@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Login</h1>
+  
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+
+
+<script>
+  email = "user@user.com.br"
+  password = "123456"
+
+  var firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
+  };
+
+  // Initialize Firebase
+  app = firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  function login() {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+        .catch(function(error) {
+          errorCode = error.code;
+          errorMessage = error.message;
+        }).then((res, u) => {
+          idToken = res.user.getIdToken()
+          .then(idToken => console.log(idToken))
+        }) 
+  }
+
+  setTimeout(() => {
+    login()
+  }, 1000);
+
+</script>  
+</body>
+</html>
